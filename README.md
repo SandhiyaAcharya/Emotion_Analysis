@@ -1,42 +1,53 @@
-# NLP Emotion Analysis
+# Emotion Recognition with Deep Learning
 
-This repository contains code for performing emotion analysis on text data using Natural Language Processing (NLP) techniques. The dataset used for this project is sourced from [Data World](https://data.world/crowdflower/sentiment-analysis-in-text) and consists of tweets labeled with emotions.
+## Introduction
+This GitHub repository contains code for a deep learning-based emotion recognition model. The model is built using Convolutional Neural Network (CNN), Long Short-Term Memory (LSTM), and DistilBERT pre-trained models. The dataset used for training and evaluation includes text data labeled with different emotions.
 
-## About the Dataset
+## Code Overview
 
-The dataset contains four columns: `twitter_id`, `author`, `content`, and `emotion`. It includes labels for the emotional content (e.g., happiness, sadness, anger) of texts. There are hundreds to thousands of examples across 13 different emotion labels.
+### Libraries
+- **neattext**: For text preprocessing, including tasks such as removing HTML tags, URLs, emojis, and more.
+- **textblob**: For sentiment analysis.
+- **transformers**: For working with pre-trained DistilBERT models.
+- **contractions**: For expanding contractions in text.
 
-## Project Overview
+### Data Loading
+- The dataset is loaded from a CSV file (`emotion_dataset.csv`) using the Pandas library.
 
-1. **Data Cleaning**
-   - Renamed the column "sentiment" to "emotion".
-   - Removed empty string entries from the "emotion" column.
-   - Eliminated rows with zeros in the "content" column.
+### Data Preprocessing
+- Various text preprocessing steps are performed, including lowercasing, handling HTML tags, removing special characters and numbers, expanding contractions, removing punctuation, and removing stopwords.
 
-2. **Data Visualization**
-   - Conducted a countplot on the "emotion" column to visualize the frequency of each emotion category.
+### Data Splitting
+- The dataset is split into training, validation, and testing sets.
 
-3. **Vaex Library for Handling Large Data**
-   - Utilized Vaex for efficient handling of large-scale data due to its memory-mapping and lazy-loading capabilities.
+### Model Building
+#### CNN Model
+- A Convolutional Neural Network (CNN) is built using TensorFlow and Keras.
+- The model includes an embedding layer, convolutional layers, dense layers, and an output layer.
+- The model is compiled using stochastic gradient descent (SGD) as the optimizer and sparse categorical crossentropy as the loss function.
 
-4. **Text Processing**
-   - Lowercased all text for uniformity.
-   - Handled HTML tags, emojis, emails, and URLs.
-   - Removed special characters, numbers, and punctuation.
-   - Expanded contractions and corrected misspelled words.
-   - Removed stopwords and tokenized the text.
-   - Applied lemmatization to reduce words to their base form.
+#### LSTM Model
+- A Long Short-Term Memory (LSTM) model is built using TensorFlow and Keras.
+- The model includes an embedding layer, batch normalization, dropout, LSTM layers, and a dense output layer.
+- The model is compiled using the Nadam optimizer and sparse categorical crossentropy as the loss function.
 
-## Usage
+#### DistilBERT Model
+- A pre-trained DistilBERT model for sequence classification is loaded using the Hugging Face `transformers` library.
+- The model is fine-tuned on the emotion dataset using TensorFlow.
 
-To run the code, follow these steps:
+### Model Training
+- The CNN and LSTM models are trained on the preprocessed text data.
+- Training progress is monitored, and early stopping is applied to prevent overfitting.
 
-1. Install the necessary libraries and packages.
-2. Load the dataset using `pd.read_csv()`.
-3. Follow the data preprocessing steps outlined in the code.
-4. Use the processed data for your emotion analysis task.
+### Model Evaluation
+- The trained models are evaluated on the testing set.
+- Evaluation metrics, such as accuracy, are displayed, and confusion matrices are generated.
 
-## References
+### DistilBERT Fine-Tuning
+- The pre-trained DistilBERT model is fine-tuned on the emotion dataset.
+- Training progress and evaluation metrics are displayed.
 
-- [Data World - Sentiment Analysis in Text](https://data.world/crowdflower/sentiment-analysis-in-text)
+### Model Saving
+- The trained DistilBERT model is saved to a specified directory for later use.
 
+Feel free to explore and modify the code to suit your needs! If you have any questions or suggestions, please open an issue or contribute to the repository.
