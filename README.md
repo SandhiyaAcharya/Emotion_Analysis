@@ -1,53 +1,60 @@
-# Emotion Recognition with Deep Learning
+# Emotion Detection using NLP
 
-## Introduction
-This GitHub repository contains code for a deep learning-based emotion recognition model. The model is built using Convolutional Neural Network (CNN), Long Short-Term Memory (LSTM), and DistilBERT pre-trained models. The dataset used for training and evaluation includes text data labeled with different emotions.
+This project aims to build and evaluate models for emotion detection in text data. We explore different architectures, including Convolutional Neural Networks (CNN), Long Short-Term Memory Networks (LSTM), and pre-trained transformer models like RoBERTa and DistilBERT.
 
-## Code Overview
+## Dataset
 
-### Libraries
-- **neattext**: For text preprocessing, including tasks such as removing HTML tags, URLs, emojis, and more.
-- **textblob**: For sentiment analysis.
-- **transformers**: For working with pre-trained DistilBERT models.
-- **contractions**: For expanding contractions in text.
+We used the "emotion_dataset.csv" for training and evaluation. The dataset contains text samples labeled with different emotions.
 
-### Data Loading
-- The dataset is loaded from a CSV file (`emotion_dataset.csv`) using the Pandas library.
+## Setup and Dependencies
 
-### Data Preprocessing
-- Various text preprocessing steps are performed, including lowercasing, handling HTML tags, removing special characters and numbers, expanding contractions, removing punctuation, and removing stopwords.
+Ensure you have the necessary dependencies installed. You can install them using the following commands:
 
-### Data Splitting
-- The dataset is split into training, validation, and testing sets.
+```bash
+!pip install textblob
+!pip install neattext
+!pip install contractions
+!pip install transformers
+```
 
-### Model Building
-#### CNN Model
-- A Convolutional Neural Network (CNN) is built using TensorFlow and Keras.
-- The model includes an embedding layer, convolutional layers, dense layers, and an output layer.
-- The model is compiled using stochastic gradient descent (SGD) as the optimizer and sparse categorical crossentropy as the loss function.
+## Exploratory Data Analysis
 
-#### LSTM Model
-- A Long Short-Term Memory (LSTM) model is built using TensorFlow and Keras.
-- The model includes an embedding layer, batch normalization, dropout, LSTM layers, and a dense output layer.
-- The model is compiled using the Nadam optimizer and sparse categorical crossentropy as the loss function.
+We conducted exploratory data analysis to understand the distribution of emotions in the dataset, text length distribution, and preprocessing steps.
 
-#### DistilBERT Model
-- A pre-trained DistilBERT model for sequence classification is loaded using the Hugging Face `transformers` library.
-- The model is fine-tuned on the emotion dataset using TensorFlow.
+## Text Processing
 
-### Model Training
-- The CNN and LSTM models are trained on the preprocessed text data.
-- Training progress is monitored, and early stopping is applied to prevent overfitting.
+We performed various text processing steps, including lowercasing, handling HTML tags, removing special characters, handling contractions, removing punctuation, and stopwords. Tokenization and lemmatization were also applied to reduce the feature space.
 
-### Model Evaluation
-- The trained models are evaluated on the testing set.
-- Evaluation metrics, such as accuracy, are displayed, and confusion matrices are generated.
+## Model Architectures
 
-### DistilBERT Fine-Tuning
-- The pre-trained DistilBERT model is fine-tuned on the emotion dataset.
-- Training progress and evaluation metrics are displayed.
+### CNN Model
 
-### Model Saving
-- The trained DistilBERT model is saved to a specified directory for later use.
+We implemented a Convolutional Neural Network (CNN) model with embedding, convolutional, and dense layers. The model was trained on the preprocessed text data.
 
-Feel free to explore and modify the code to suit your needs! If you have any questions or suggestions, please open an issue or contribute to the repository.
+### LSTM Model
+
+We implemented a Long Short-Term Memory Network (LSTM) model with bidirectional layers for sequence processing. The model was trained on the preprocessed text data.
+
+### RoBERTa Pretrained Model
+
+We used the RoBERTa transformer model with a fine-tuned classification head for emotion detection. The model was trained and evaluated using the Hugging Face `transformers` library.
+
+### DistilBERT Pretrained Model
+
+Similar to RoBERTa, we used the DistilBERT transformer model for emotion detection. The model was trained and evaluated using the Hugging Face `transformers` library.
+
+## Model Evaluation
+
+We evaluated the models on a test set and visualized their performance using accuracy, confusion matrices, and other relevant metrics.
+
+## Results
+
+The trained models achieved competitive performance in emotion detection on the provided dataset.
+
+## Usage
+
+To use the pre-trained models for emotion detection, you can follow the examples provided in the respective model sections. Make sure to install the required dependencies and load the models accordingly.
+
+
+Feel free to contribute, provide feedback, or use the models for your own applications.
+
